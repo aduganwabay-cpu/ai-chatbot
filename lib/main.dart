@@ -33,7 +33,7 @@ class _ChatScreenState extends State<ChatScreen> {
   final List<ChatMessage> _messages = [];
   bool _isLoading = false;
 
-  static const String _apiKey = 'AIzaSyD-የአንተን_እውነተኛ_ቁጥር_እዚህ_አስገባ';
+  static const String _apiKey = 'AQ.Ab8RN6LsfGOxVY9UWfZA3RB1FT4B5hDOE8jYYrAgUF10S1NsHw';
 
   late final GenerativeModel _model;
 
