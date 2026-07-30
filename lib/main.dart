@@ -34,7 +34,7 @@ class _ChatScreenState extends State<ChatScreen> {
   bool _isLoading = false;
 
   // እዚህጋር የራስህን የ Gemini API Key አስገባ
-  static const String _apiKey = Gemini API Key 
+  static const String _apiKey = static const String _apiKey =
 
   late final GenerativeModel _model;
 
