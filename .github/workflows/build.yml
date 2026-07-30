@@ -7,6 +7,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ai-chatbot
 
     steps:
       - uses: actions/checkout@v4
@@ -25,14 +28,12 @@ jobs:
 
       - name: Install dependencies
         run: flutter pub get
-        working-directory: ai-chatbot
 
       - name: Build APK
         run: flutter build apk --release
-        working-directory: ai-chatbot
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: app-release
-          path: ai-chatbot/build/app/outputs/flutter-apk/app-release.apk
+          path: build/app/outputs/flutter-apk/app-release.apk
