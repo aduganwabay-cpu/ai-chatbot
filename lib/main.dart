@@ -33,13 +33,7 @@ class _ChatScreenState extends State<ChatScreen> {
   final List<ChatMessage> _messages = [];
   bool _isLoading = false;
 
-  // እዚህጋር የራስህን የ Gemini API Key አስገባ
-  
-static const String _apiKey = 'AIzaSyD-አንተ_ያመነጨኸው_ቁጥር_
-
-static const String _apiKey = 'AIzaSyD-አንተ_ያመነጨኸው_ቁጥር_እዚህ_ይገባል';
-
-
+  static const String _apiKey = 'AIzaSyD-የአንተን_እውነተኛ_ቁጥር_እዚህ_አስገባ';
 
   late final GenerativeModel _model;
 
@@ -68,9 +62,10 @@ static const String _apiKey = 'AIzaSyD-አንተ_ያመነጨኸው_ቁጥር_�
 
       setState(() {
         _messages.add(ChatMessage(
-          text: response.text ?? 'መልስ ማግኘት አልተቻለም።',
+          text: response.text ?? 'መልስ ማግኘት አልቻልኩም።',
           isUser: false,
         ));
+        _isLoading = false;
       });
     } catch (e) {
       setState(() {
@@ -78,9 +73,6 @@ static const String _apiKey = 'AIzaSyD-አንተ_ያመነጨኸው_ቁጥር_�
           text: 'ስህተት ተፈጥሯል: $e',
           isUser: false,
         ));
-      });
-    } finally {
-      setState(() {
         _isLoading = false;
       });
     }
@@ -140,7 +132,7 @@ static const String _apiKey = 'AIzaSyD-አንተ_ያመነጨኸው_ቁጥር_�
 }
 
 class ChatMessage {
-  const ChatMessage({required this.text, required this.isUser});
+  ChatMessage({required this.text, required this.isUser});
   final String text;
   final bool isUser;
 }
