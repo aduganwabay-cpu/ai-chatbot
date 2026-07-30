@@ -34,7 +34,7 @@ class _ChatScreenState extends State<ChatScreen> {
   bool _isLoading = false;
 
   // እዚህጋር የራስህን የ Gemini API Key አስገባ
-  static const String _apiKey = static const String _apiKey = static const 
+      =     =   
 static const String _apiKey = 'AIzaSyD-አንተ_ያመነጨኸው_ቁጥር_እዚህ_ይገባል';
 
 
