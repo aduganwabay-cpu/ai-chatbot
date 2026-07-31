@@ -9,8 +9,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: Clone repository
+        run: git clone https://github.com/aduganwabay-cpu/ai-chatbot.git .
 
       - name: Set up Java
         uses: actions/setup-java@v4
@@ -18,14 +18,15 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: '3.19.2'
-          channel: 'stable'
+      - name: Install Flutter
+        run: |
+          git clone https://github.com/flutter/flutter.git -b stable --depth 1 _flutter
+          echo "$GITHUB_WORKSPACE/_flutter/bin" >> $GITHUB_PATH
 
-      - name: Install Dependencies
-        run: flutter pub get
+      - name: Doctor and Pub Get
+        run: |
+          flutter doctor -v
+          flutter pub get
 
       - name: Build APK
         run: flutter build apk --release
