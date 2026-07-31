@@ -23,7 +23,6 @@ jobs:
         with:
           flutter-version: '3.19.2'
           channel: 'stable'
-          cache: true
 
       - name: Install Dependencies
         run: flutter pub get
