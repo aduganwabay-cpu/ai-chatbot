@@ -2,14 +2,17 @@ name: Build Flutter APK
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Set up Java
         uses: actions/setup-java@v3
@@ -20,8 +23,9 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.19.0'
+          flutter-version: '3.x'
           channel: 'stable'
+          cache: true
 
       - name: Install dependencies
         run: flutter pub get
@@ -32,5 +36,5 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: app-release
+          name: release-apk
           path: build/app/outputs/flutter-apk/app-release.apk
