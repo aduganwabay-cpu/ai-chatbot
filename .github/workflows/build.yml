@@ -9,24 +9,23 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Clone repository
-        run: git clone https://github.com/aduganwabay-cpu/ai-chatbot.git .
+      - name: Checkout repository
+        run: |
+          git init
+          git remote add origin https://github.com/aduganwabay-cpu/ai-chatbot.git
+          git fetch origin main
+          git checkout main
 
-      - name: Set up Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: '17'
+      - name: Install Java
+        run: sudo apt-get update && sudo apt-get install -y openjdk-17-jdk
 
       - name: Install Flutter
         run: |
           git clone https://github.com/flutter/flutter.git -b stable --depth 1 _flutter
           echo "$GITHUB_WORKSPACE/_flutter/bin" >> $GITHUB_PATH
 
-      - name: Doctor and Pub Get
-        run: |
-          flutter doctor -v
-          flutter pub get
+      - name: Get Dependencies
+        run: flutter pub get
 
       - name: Build APK
         run: flutter build apk --release
